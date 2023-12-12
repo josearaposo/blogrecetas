@@ -1,0 +1,18 @@
+                                            Tabla «public.recetas»
+   Columna    |              Tipo              | Ordenamiento | Nulable  |             Por omisión             
+--------------+--------------------------------+--------------+----------+-------------------------------------
+ id           | bigint                         |              | not null | nextval('recetas_id_seq'::regclass)
+ user_id      | bigint                         |              | not null | 
+ titulo       | character varying(255)         |              | not null | 
+ body         | text                           |              | not null | 
+ created_at   | timestamp(0) without time zone |              |          | 
+ updated_at   | timestamp(0) without time zone |              |          | 
+ categoria_id | bigint                         |              | not null | '1'::bigint
+Índices:
+    "recetas_pkey" PRIMARY KEY, btree (id)
+Restricciones de llave foránea:
+    "recetas_categoria_id_foreign" FOREIGN KEY (categoria_id) REFERENCES categorias(id)
+    "recetas_user_id_foreign" FOREIGN KEY (user_id) REFERENCES users(id)
+Referenciada por:
+    TABLE "comentarios" CONSTRAINT "comentarios_receta_id_foreign" FOREIGN KEY (receta_id) REFERENCES recetas(id)
+
